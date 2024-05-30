@@ -47,7 +47,7 @@ resource "aws_instance" "ubuntu-vm-instance" {
                         java-app:
                           image: "642534338961.dkr.ecr.us-east-1.amazonaws.com/java-meven:latest"
                           ports:
-                          - "8000:3306"
+                            - "8000:3306"
                     EOL
                     docker-compose up -d
                  EOF
