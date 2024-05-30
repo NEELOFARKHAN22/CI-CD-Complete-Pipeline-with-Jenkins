@@ -34,10 +34,25 @@ resource "aws_instance" "ubuntu-vm-instance" {
   }
   user_data = <<-EOF
                     #!/bin/bash
+                    sudo apt install docker.io -y
+                    sudo systemctl start docker
+                    sudo systemctl enable docker
+                    sudo apt-get install docker-compose-plugin
                     aws ecr get-login-password --region us-east-1 && docker login --username AWS --password-stdin 642534338961.dkr.ecr.us-east-1.amazonaws.com
                     docker pull 642534338961.dkr.ecr.us-east-1.amazonaws.com/java-meven:latest
-                    docker run -it --name container1 java-meven:latest
+                    #docker run -it --name container1 java-meven:latest
+                    cat <<EOF >docker-compose.yml
+                    services:
+                      java-app:
+                        image: "java-meven:latest" 
+                        build: .
+                        ports:
+                          - "8000:3306"
+                    EOF
                  EOF
+
+                 
+
 
 
 }
