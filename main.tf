@@ -41,18 +41,16 @@ resource "aws_instance" "ubuntu-vm-instance" {
                     aws ecr get-login-password --region us-east-1 && docker login --username AWS --password-stdin 642534338961.dkr.ecr.us-east-1.amazonaws.com
                     docker pull 642534338961.dkr.ecr.us-east-1.amazonaws.com/java-meven:latest
                     #docker run -it --name container1 java-meven:latest
-                    cat <<EOF >docker-compose.yml
-                    services:
-                      java-app:
-                        image: "java-meven:latest" 
-                        build: .
-                        ports:
+                    cat <<EOL >docker-compose.yml
+                    version: '3'
+                      services:
+                        java-app:
+                          image: "642534338961.dkr.ecr.us-east-1.amazonaws.com/java-meven:latest"
+                          ports:
                           - "8000:3306"
-                    EOF
+                    EOL
+                    docker-compose up -d
                  EOF
-
-                 
-
 
 
 }
