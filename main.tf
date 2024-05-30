@@ -34,7 +34,7 @@ resource "aws_instance" "ubuntu-vm-instance" {
   }
   user_data = EOF<<
  #!/bin/bash
- aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 642534338961.dkr.ecr.us-east-1.amazonaws.com
+ aws ecr get-login-password --region us-east-1 & docker login --username AWS --password-stdin 642534338961.dkr.ecr.us-east-1.amazonaws.com
  docker pull 642534338961.dkr.ecr.us-east-1.amazonaws.com/java-meven:latest
  docker run -it --name container1 java-meven:latest
  >>>
