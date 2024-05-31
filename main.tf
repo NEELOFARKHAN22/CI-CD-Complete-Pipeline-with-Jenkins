@@ -124,7 +124,7 @@ resource "aws_instance" "ubuntu_vm_instance" {
                         ports:
                           - "8000:3306"
                     EOL
-                    sudo docker-compose up -d
+                    sudo docker compose up -d
                  EOF
 }
 
