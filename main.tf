@@ -34,10 +34,23 @@ resource "aws_instance" "ubuntu-vm-instance" {
   }
   user_data = <<-EOF
                     #!/bin/bash
-                    sudo apt install docker.io -y
-                    sudo systemctl start docker
-                    sudo systemctl enable docker
-                    sudo apt-get install docker-compose-plugin
+                    sudo apt update
+                    sudo apt install ca-certificates curl
+                    sudo install -m 0755 -d /etc/apt/keyrings
+                    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+                    sudo chmod a+r /etc/apt/keyrings/docker.asc
+                    echo \
+                      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+                       $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+                        sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+                    sudo apt update
+                    sudo apt install docker-compose-plugin -y
+                    docker compose version
+                    sudo apt-get install unzip
+                    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+                    unzip awscliv2.zip
+                    sudo ./aws/install
+                    sudo snap install aws-cli
                     aws ecr get-login-password --region us-east-1 && docker login --username AWS --password-stdin 642534338961.dkr.ecr.us-east-1.amazonaws.com
                     docker pull 642534338961.dkr.ecr.us-east-1.amazonaws.com/java-meven:latest
                     #docker run -it --name container1 java-meven:latest
