@@ -1,15 +1,15 @@
-variable "key-name" {
+#variable "key-name" {
 
-}
+#}
 
-variable "network-security-group-name" {
+#variable "network-security-group-name" {
 
-}
+#}
 
-variable "ubuntu-ami" {
+#variable "ubuntu-ami" {
 
-}
+#
 
-variable "ubuntu-instance-type" {
+#variable "ubuntu-instance-type" {
 
-}
+#}
