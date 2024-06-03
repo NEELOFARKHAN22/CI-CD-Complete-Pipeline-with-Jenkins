@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                dir('/var/lib/jenkins/workspace/CI-CD-Pipeline/f1') {
+                dir('/var/lib/jenkins/workspace/CI-CD-Pipeline/Application-files') {
                     script {
                         def retries = 3
                         def attempt = 1
