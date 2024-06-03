@@ -51,7 +51,11 @@ pipeline {
         }
        
         stage('Dockerize Application') {
-            sh 'docker build -t java-maven .'                             
+            steps {
+                script {
+                    sh 'docker build -t java-maven .'   
+                } 
+            }    
         }
 
         stage('Push to ECR') {
