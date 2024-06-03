@@ -51,18 +51,7 @@ pipeline {
         }
        
         stage('Dockerize Application') {
-            steps {
-                script {
-                    writeFile file: 'Dockerfile', text: '''
-                    FROM openjdk:8-jdk-alpine
-                    WORKDIR /app
-                    COPY target/rest-0.0.1-SNAPSHOT.jar app.jar
-                    CMD ["java", "-jar", "app.jar"]
-                    '''
-                    
-                    sh 'docker build -t java-maven .'
-                }
-            }
+            sh 'docker build -t java-maven .'                             
         }
 
         stage('Push to ECR') {
