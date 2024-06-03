@@ -1,7 +1,7 @@
 provider "aws" {
   region = "us-east-1"
 }
-
+# IAM Role for EC2
 resource "aws_iam_role" "ec2_role" {
   name = "ec2-role"
 
@@ -18,7 +18,6 @@ resource "aws_iam_role" "ec2_role" {
     ]
   })
 }
-
 resource "aws_iam_role_policy" "ecr_policy" {
   name = "ecr-policy"
   role = aws_iam_role.ec2_role.id
