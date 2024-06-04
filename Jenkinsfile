@@ -78,7 +78,6 @@ pipeline {
             steps {
                 dir('/var/lib/jenkins/workspace/CI-CD-Pipeline/Terraform') {
                     script{
-                        sh 'echo $AWS_ACCESS_KEY_ID'
                         sh 'terraform init'
                         sh 'terraform validate'
                         sh 'terraform plan -lock=false'
