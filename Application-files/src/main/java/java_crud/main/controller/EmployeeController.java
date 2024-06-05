@@ -38,7 +38,10 @@ public class EmployeeController {
 	DetailRepository detailRepository;
 //
 //	@GetMapping("/list")
-
+	@RequestMapping(value = "/fetch", method = RequestMethod.GET)
+	public  String checkApi() {
+		return "Hello";
+	}
 	@RequestMapping(value = "/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.ALL_VALUE)
 	public ResponseEntity<?> getEmployees(@RequestParam(required = false) Integer id,
 			@RequestParam(required = false) String name) {
